@@ -1,255 +1,426 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GA TCG Counter</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-            -webkit-user-select: none;
-            overflow: hidden;
-        }
-        .font-cinzel {
-            font-family: 'Cinzel', serif;
-        }
-        .btn-press:active {
-            transform: scale(0.93);
-        }
-        /* Rotate Opponent Section for face-to-face table play */
-        .rotate-opponent {
-            transform: rotate(180deg);
-        }
-        /* Glassmorphic overlay animations */
-        @keyframes modalPop {
-            0% { opacity: 0; transform: scale(0.95); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        .animate-pop {
-            animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>GA TCG Counter</title>
+  
+  <!-- Configurações PWA e Web App -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d0e12">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GA Counter">
+  <link rel="apple-touch-icon" href="logo.png">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0d0e12;
+      color: #ffffff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Estutura de Tela Dividida */
+    .player-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 16px;
+      position: relative;
+    }
+
+    /* Inversão para o Jogador Superior */
+    .player-top {
+      transform: rotate(180deg);
+      background: linear-gradient(180deg, rgba(14, 28, 48, 0.6) 0%, rgba(13, 14, 18, 0.9) 100%);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    }
+
+    .player-bottom {
+      background: linear-gradient(180deg, rgba(13, 14, 18, 0.9) 0%, rgba(48, 14, 28, 0.6) 100%);
+      border-top: 1px solid rgba(255, 75, 75, 0.15);
+    }
+
+    /* Divisor Central com Logo */
+    .divider {
+      height: 48px;
+      background: #14161d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px solid #252836;
+      border-bottom: 1px solid #252836;
+      z-index: 10;
+      position: relative;
+    }
+
+    .logo-container {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #1e2230;
+      border: 2px solid #3b4259;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    }
+
+    .app-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Contador de Dano */
+    .damage-display-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: auto 0;
+    }
+
+    .damage-number {
+      font-size: 5.5rem;
+      font-weight: 900;
+      line-height: 1;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .player-top .damage-number {
+      color: #38ef7d;
+    }
+
+    .player-bottom .damage-number {
+      color: #ff5252;
+    }
+
+    /* Badge Sequencial (+X / -X) */
+    .sequence-badge {
+      position: absolute;
+      top: -24px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      opacity: 0;
+      transform: translateY(10px) scale(0.8);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+    }
+
+    .sequence-badge.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .sequence-badge.plus {
+      background: rgba(255, 82, 82, 0.25);
+      color: #ff5252;
+      border: 1px solid rgba(255, 82, 82, 0.4);
+    }
+
+    .sequence-badge.minus {
+      background: rgba(56, 239, 125, 0.25);
+      color: #38ef7d;
+      border: 1px solid rgba(56, 239, 125, 0.4);
+    }
+
+    /* Barra de Progresso */
+    .progress-bar-bg {
+      width: 140px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      transition: width 0.2s ease, background 0.2s ease;
+    }
+
+    .player-top .progress-bar-fill { background: #38ef7d; }
+    .player-bottom .progress-bar-fill { background: #ff5252; }
+
+    /* Botões de Controle */
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1.5fr 1fr;
+      gap: 10px;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .btn {
+      height: 52px;
+      border: none;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.1s, transform 0.1s;
+    }
+
+    .btn:active {
+      transform: scale(0.94);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Modal de Vitória/Derrota */
+    .result-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 11, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .result-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .result-half {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .result-top {
+      transform: rotate(180deg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .result-title {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .win {
+      color: #38ef7d;
+      text-shadow: 0 0 25px rgba(56, 239, 125, 0.5);
+    }
+
+    .lose {
+      color: #ff5252;
+      text-shadow: 0 0 25px rgba(255, 82, 82, 0.5);
+    }
+
+    .reset-center-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      background: #252836;
+      border: 2px solid #3b4259;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .reset-center-btn:active {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 h-screen w-screen flex flex-col justify-between overflow-hidden select-none">
+<body>
 
-    <!-- TOP PLAYER (CYAN / SAPPHIRE THEME - MIRRORED) -->
-    <section class="flex-1 rotate-opponent bg-gradient-to-b from-cyan-950/80 to-slate-950/90 border-b border-cyan-500/20 p-4 flex flex-col justify-between relative overflow-hidden">
-        <!-- Top Player Header -->
-        <div class="flex justify-between items-center z-10">
-            <span class="text-[11px] font-bold text-cyan-400 uppercase tracking-widest bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800/50">
-                Dano
-            </span>
-            <span class="text-xs font-semibold text-cyan-500/80 bg-slate-950/80 px-2.5 py-1 rounded-full border border-cyan-900/40">
-                / 25
-            </span>
-        </div>
-
-        <!-- Top Player Damage Display -->
-        <div class="flex-1 flex flex-col items-center justify-center my-1 z-10">
-            <div id="p2Damage" class="text-8xl font-black text-cyan-400 drop-shadow-[0_0_25px_rgba(34,211,238,0.4)] transition-all duration-200 tracking-tight">
-                0
-            </div>
-            <!-- Progress Bar -->
-            <div class="w-full max-w-xs bg-slate-950/80 h-2.5 rounded-full mt-3 overflow-hidden border border-cyan-900/50 p-0.5">
-                <div id="p2Bar" class="bg-gradient-to-r from-cyan-500 to-teal-400 h-full rounded-full transition-all duration-300 w-0"></div>
-            </div>
-        </div>
-
-        <!-- Top Player Controls -->
-        <div class="grid grid-cols-4 gap-2.5 z-10 max-w-md mx-auto w-full">
-            <button onclick="adjustDamage(2, -5)" class="btn-press bg-cyan-950/40 hover:bg-cyan-900/50 text-cyan-300 font-bold text-sm py-3.5 rounded-2xl border border-cyan-800/40 shadow">
-                −5
-            </button>
-            <button onclick="adjustDamage(2, -1)" class="btn-press bg-cyan-950/40 hover:bg-cyan-900/50 text-cyan-300 font-bold text-2xl py-3.5 rounded-2xl border border-cyan-800/40 shadow">
-                −
-            </button>
-            <button onclick="adjustDamage(2, 1)" class="btn-press bg-cyan-900/60 hover:bg-cyan-800/60 text-cyan-200 font-bold text-2xl py-3.5 rounded-2xl border border-cyan-600/50 shadow">
-                +
-            </button>
-            <button onclick="adjustDamage(2, 5)" class="btn-press bg-cyan-900/60 hover:bg-cyan-800/60 text-cyan-200 font-bold text-sm py-3.5 rounded-2xl border border-cyan-600/50 shadow">
-                +5
-            </button>
-        </div>
-    </section>
-
-    <!-- MIDDLE UTILITY BAR -->
-    <div class="bg-slate-950 py-2 px-4 flex items-center justify-between border-y border-slate-800/80 z-20">
-        <span class="font-cinzel text-xs font-bold tracking-widest text-slate-400">GA TCG</span>
-        <button onclick="resetGame()" class="btn-press bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-slate-200 font-semibold text-xs tracking-wider uppercase px-4 py-2 rounded-xl flex items-center gap-1.5 shadow">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
-            Reiniciar
-        </button>
-        <span class="text-[10px] text-slate-600 font-mono tracking-wider">GA TCG</span>
+  <!-- Jogador 2 (Superior Espelhado) -->
+  <div class="player-area player-top">
+    <div class="damage-display-container">
+      <div class="sequence-badge" id="seq-top">0</div>
+      <div class="damage-number" id="damage-top">0</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="bar-top"></div>
+      </div>
     </div>
 
-    <!-- BOTTOM PLAYER (CRIMSON / AMBER THEME) -->
-    <section class="flex-1 bg-gradient-to-b from-slate-950/90 to-rose-950/80 border-t border-rose-500/20 p-4 flex flex-col justify-between relative overflow-hidden">
-        <!-- Bottom Player Header -->
-        <div class="flex justify-between items-center z-10">
-            <span class="text-[11px] font-bold text-rose-400 uppercase tracking-widest bg-rose-950/60 px-3 py-1 rounded-full border border-rose-800/50">
-                Dano
-            </span>
-            <span class="text-xs font-semibold text-rose-500/80 bg-slate-950/80 px-2.5 py-1 rounded-full border border-rose-900/40">
-                / 25
-            </span>
-        </div>
+    <div class="controls">
+      <button class="btn" onclick="addDamage('top', -5)">-5</button>
+      <button class="btn" onclick="addDamage('top', -1)">-1</button>
+      <button class="btn" onclick="addDamage('top', 1)">+1</button>
+      <button class="btn" onclick="addDamage('top', 5)">+5</button>
+    </div>
+  </div>
 
-        <!-- Bottom Player Damage Display -->
-        <div class="flex-1 flex flex-col items-center justify-center my-1 z-10">
-            <div id="p1Damage" class="text-8xl font-black text-rose-400 drop-shadow-[0_0_25px_rgba(244,63,94,0.4)] transition-all duration-200 tracking-tight">
-                0
-            </div>
-            <!-- Progress Bar -->
-            <div class="w-full max-w-xs bg-slate-950/80 h-2.5 rounded-full mt-3 overflow-hidden border border-rose-900/50 p-0.5">
-                <div id="p1Bar" class="bg-gradient-to-r from-rose-500 to-amber-500 h-full rounded-full transition-all duration-300 w-0"></div>
-            </div>
-        </div>
+  <!-- Divisor Central com Logo -->
+  <div class="divider">
+    <div class="logo-container">
+      <img src="logo.png" alt="GA Logo" class="app-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+      <span style="display:none; font-size: 1.2rem;">🛡️️</span>
+    </div>
+  </div>
 
-        <!-- Bottom Player Controls -->
-        <div class="grid grid-cols-4 gap-2.5 z-10 max-w-md mx-auto w-full">
-            <button onclick="adjustDamage(1, -5)" class="btn-press bg-rose-950/40 hover:bg-rose-900/50 text-rose-300 font-bold text-sm py-3.5 rounded-2xl border border-rose-800/40 shadow">
-                −5
-            </button>
-            <button onclick="adjustDamage(1, -1)" class="btn-press bg-rose-950/40 hover:bg-rose-900/50 text-rose-300 font-bold text-2xl py-3.5 rounded-2xl border border-rose-800/40 shadow">
-                −
-            </button>
-            <button onclick="adjustDamage(1, 1)" class="btn-press bg-rose-900/60 hover:bg-rose-800/60 text-rose-200 font-bold text-2xl py-3.5 rounded-2xl border border-rose-600/50 shadow">
-                +
-            </button>
-            <button onclick="adjustDamage(1, 5)" class="btn-press bg-rose-900/60 hover:bg-rose-800/60 text-rose-200 font-bold text-sm py-3.5 rounded-2xl border border-rose-600/50 shadow">
-                +5
-            </button>
-        </div>
-    </section>
-
-    <!-- DUAL-ORIENTED WIN/LOSS MODAL OVERLAY -->
-    <div id="gameOverModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex flex-col justify-between p-6 animate-pop">
-        <!-- Top Banner (Oriented towards Top Player) -->
-        <div class="rotate-opponent w-full max-w-sm mx-auto">
-            <div id="topResultCard" class="border rounded-2xl p-5 text-center shadow-xl">
-                <p id="topResultStatus" class="text-xs uppercase tracking-widest font-semibold mb-1"></p>
-                <p id="topResultTitle" class="text-3xl font-black font-cinzel"></p>
-            </div>
-        </div>
-
-        <!-- Middle Reset Trigger -->
-        <div class="my-auto text-center">
-            <button onclick="resetGame()" class="btn-press bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-sm px-8 py-4 rounded-2xl shadow-xl uppercase tracking-wider transition-all">
-                Nova Partida
-            </button>
-        </div>
-
-        <!-- Bottom Banner (Oriented towards Bottom Player) -->
-        <div class="w-full max-w-sm mx-auto">
-            <div id="bottomResultCard" class="border rounded-2xl p-5 text-center shadow-xl">
-                <p id="bottomResultStatus" class="text-xs uppercase tracking-widest font-semibold mb-1"></p>
-                <p id="bottomResultTitle" class="text-3xl font-black font-cinzel"></p>
-            </div>
-        </div>
+  <!-- Jogador 1 (Inferior) -->
+  <div class="player-area player-bottom">
+    <div class="damage-display-container">
+      <div class="sequence-badge" id="seq-bottom">0</div>
+      <div class="damage-number" id="damage-bottom">0</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="bar-bottom"></div>
+      </div>
     </div>
 
-    <script>
-        const MAX_DAMAGE = 25;
-        const MIN_DAMAGE = 0;
+    <div class="controls">
+      <button class="btn" onclick="addDamage('bottom', -5)">-5</button>
+      <button class="btn" onclick="addDamage('bottom', -1)">-1</button>
+      <button class="btn" onclick="addDamage('bottom', 1)">+1</button>
+      <button class="btn" onclick="addDamage('bottom', 5)">+5</button>
+    </div>
+  </div>
 
-        let p1Damage = 0; // Bottom player
-        let p2Damage = 0; // Top player
+  <!-- Modal Vitória/Derrota -->
+  <div class="result-modal" id="resultModal">
+    <div class="result-half result-top">
+      <div class="result-title" id="res-top-title">GANHOU</div>
+    </div>
 
-        const p1DamageEl = document.getElementById('p1Damage');
-        const p2DamageEl = document.getElementById('p2Damage');
-        const p1BarEl = document.getElementById('p1Bar');
-        const p2BarEl = document.getElementById('p2Bar');
+    <button class="reset-center-btn" onclick="resetGame()">Reiniciar</button>
 
-        const gameOverModal = document.getElementById('gameOverModal');
+    <div class="result-half">
+      <div class="result-title" id="res-bottom-title">PERDEU</div>
+    </div>
+  </div>
 
-        function updateUI() {
-            p1DamageEl.textContent = p1Damage;
-            p2DamageEl.textContent = p2Damage;
+  <script>
+    const MAX_DAMAGE = 25;
+    const MIN_DAMAGE = 0;
 
-            p1BarEl.style.width = `${(p1Damage / MAX_DAMAGE) * 100}%`;
-            p2BarEl.style.width = `${(p2Damage / MAX_DAMAGE) * 100}%`;
+    let state = {
+      top: 0,
+      bottom: 0
+    };
 
-            if (p1Damage >= MAX_DAMAGE || p2Damage >= MAX_DAMAGE) {
-                triggerGameOver();
-            }
+    let sequenceData = {
+      top: { sum: 0, timer: null },
+      bottom: { sum: 0, timer: null }
+    };
+
+    function addDamage(player, amount) {
+      let current = state[player];
+      let nextValue = current + amount;
+
+      // Mantém os limites estritos de 0 a 25
+      if (nextValue < MIN_DAMAGE) nextValue = MIN_DAMAGE;
+      if (nextValue > MAX_DAMAGE) nextValue = MAX_DAMAGE;
+
+      let actualDelta = nextValue - current;
+      state[player] = nextValue;
+
+      updateUI(player);
+      if (actualDelta !== 0) {
+        handleSequence(player, actualDelta);
+      }
+      checkGameOver();
+    }
+
+    function handleSequence(player, delta) {
+      let data = sequenceData[player];
+      clearTimeout(data.timer);
+
+      data.sum += delta;
+
+      const badge = document.getElementById(`seq-${player}`);
+      if (data.sum !== 0) {
+        badge.textContent = (data.sum > 0 ? '+' : '') + data.sum;
+        badge.className = `sequence-badge visible ${data.sum > 0 ? 'plus' : 'minus'}`;
+      } else {
+        badge.classList.remove('visible');
+      }
+
+      data.timer = setTimeout(() => {
+        badge.classList.remove('visible');
+        data.sum = 0;
+      }, 1500);
+    }
+
+    function updateUI(player) {
+      const val = state[player];
+      document.getElementById(`damage-${player}`).textContent = val;
+      const pct = (val / MAX_DAMAGE) * 100;
+      document.getElementById(`bar-${player}`).style.width = `${pct}%`;
+    }
+
+    function checkGameOver() {
+      if (state.top >= MAX_DAMAGE || state.bottom >= MAX_DAMAGE) {
+        const modal = document.getElementById('resultModal');
+        const topTitle = document.getElementById('res-top-title');
+        const bottomTitle = document.getElementById('res-bottom-title');
+
+        if (state.top >= MAX_DAMAGE) {
+          topTitle.textContent = "PERDEU";
+          topTitle.className = "result-title lose";
+          bottomTitle.textContent = "GANHOU";
+          bottomTitle.className = "result-title win";
+        } else {
+          topTitle.textContent = "GANHOU";
+          topTitle.className = "result-title win";
+          bottomTitle.textContent = "PERDEU";
+          bottomTitle.className = "result-title lose";
         }
 
-        function adjustDamage(player, amount) {
-            if (player === 1) {
-                p1Damage = Math.max(MIN_DAMAGE, Math.min(MAX_DAMAGE, p1Damage + amount));
-            } else {
-                p2Damage = Math.max(MIN_DAMAGE, Math.min(MAX_DAMAGE, p2Damage + amount));
-            }
-            updateUI();
-        }
+        modal.classList.add('active');
+      }
+    }
 
-        function triggerGameOver() {
-            const topCard = document.getElementById('topResultCard');
-            const topStatus = document.getElementById('topResultStatus');
-            const topTitle = document.getElementById('topResultTitle');
+    function resetGame() {
+      state.top = 0;
+      state.bottom = 0;
+      updateUI('top');
+      updateUI('bottom');
+      document.getElementById('resultModal').classList.remove('active');
+    }
 
-            const bottomCard = document.getElementById('bottomResultCard');
-            const bottomStatus = document.getElementById('bottomResultStatus');
-            const bottomTitle = document.getElementById('bottomResultTitle');
-
-            if (p1Damage >= MAX_DAMAGE && p2Damage >= MAX_DAMAGE) {
-                setResult(topCard, topStatus, topTitle, 'EMPATE', 'FIM DE JOGO', 'amber');
-                setResult(bottomCard, bottomStatus, bottomTitle, 'EMPATE', 'FIM DE JOGO', 'amber');
-            } else if (p1Damage >= MAX_DAMAGE) {
-                // Bottom player hit 25 damage -> PERDEU
-                setResult(bottomCard, bottomStatus, bottomTitle, 'DERROTA', 'PERDEU', 'rose');
-                setResult(topCard, topStatus, topTitle, 'VITÓRIA', 'GANHOU', 'emerald');
-            } else {
-                // Top player hit 25 damage -> PERDEU
-                setResult(topCard, topStatus, topTitle, 'DERROTA', 'PERDEU', 'rose');
-                setResult(bottomCard, bottomStatus, bottomTitle, 'VITÓRIA', 'GANHOU', 'emerald');
-            }
-
-            gameOverModal.classList.remove('hidden');
-        }
-
-        function setResult(card, statusEl, titleEl, statusText, titleText, theme) {
-            if (theme === 'emerald') {
-                card.className = "bg-emerald-950/80 border-emerald-500/80 text-emerald-200 border rounded-2xl p-5 text-center shadow-xl backdrop-blur-md";
-                statusEl.className = "text-xs uppercase tracking-widest font-semibold mb-1 text-emerald-400";
-            } else if (theme === 'rose') {
-                card.className = "bg-rose-950/80 border-rose-500/80 text-rose-200 border rounded-2xl p-5 text-center shadow-xl backdrop-blur-md";
-                statusEl.className = "text-xs uppercase tracking-widest font-semibold mb-1 text-rose-400";
-            } else {
-                card.className = "bg-amber-950/80 border-amber-500/80 text-amber-200 border rounded-2xl p-5 text-center shadow-xl backdrop-blur-md";
-                statusEl.className = "text-xs uppercase tracking-widest font-semibold mb-1 text-amber-400";
-            }
-
-            statusEl.textContent = statusText;
-            titleEl.textContent = titleText;
-        }
-
-        function resetGame() {
-            p1Damage = 0;
-            p2Damage = 0;
-            gameOverModal.classList.add('hidden');
-            updateUI();
-        }
-
-        /* Prevent double-tap zooming on mobile touch devices */
-        document.addEventListener('touchend', function (event) {
-            const now = (new Date()).getTime();
-            if (now - (window.lastTouchEnd || 0) <= 300) {
-                event.preventDefault();
-            }
-            window.lastTouchEnd = now;
-        }, false);
-
-        window.onload = function() {
-            updateUI();
-        };
-    </script>
+    // Registro do Service Worker para PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW Fail:', err));
+      });
+    }
+  </script>
 </body>
 </html>
