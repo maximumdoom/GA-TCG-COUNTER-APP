@@ -101,37 +101,37 @@
             </div>
         </div>
 
-        <div class="flex-1 min-h-0 flex flex-col items-center justify-center my-auto z-10 relative">
+        <div class="flex-1 min-h-0 flex flex-col items-center justify-center my-auto z-10 relative pb-6">
             <div id="p2SequenceBadge" class="hidden absolute top-0 px-3 py-0.5 rounded-full text-xs font-black tracking-wider shadow-lg animate-seq border">
                 +0
             </div>
             
-            <div id="p2Damage" class="text-5xl sm:text-7xl font-black transition-all duration-200 tracking-tight leading-none">
+            <div id="p2Damage" class="text-6xl sm:text-8xl font-black transition-all duration-200 tracking-tight leading-none mb-1">
                 0
             </div>
             
-            <div id="p2BarContainer" class="w-full max-w-[200px] sm:max-w-xs bg-slate-950/80 h-1.5 sm:h-2 rounded-full mt-1.5 overflow-hidden border p-0.5 transition-all">
+            <div id="p2BarContainer" class="w-full max-w-[220px] sm:max-w-xs bg-slate-950/80 h-2 sm:h-2.5 rounded-full mt-1.5 overflow-hidden border p-0.5 transition-all">
                 <div id="p2Bar" class="bg-gradient-to-r h-full rounded-full transition-all duration-300 w-0"></div>
             </div>
         </div>
 
-        <div class="grid grid-cols-4 gap-1.5 z-10 max-w-md mx-auto w-full shrink-0 pb-0.5">
-            <button id="p2BtnMinus5" onclick="adjustDamage(2, -5)" class="btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition">
+        <div class="grid grid-cols-4 gap-2 z-10 max-w-md mx-auto w-full shrink-0 pb-6">
+            <button id="p2BtnMinus5" onclick="adjustDamage(2, -5)" class="btn-press font-extrabold text-base sm:text-lg py-3.5 sm:py-4 rounded-2xl border shadow-lg transition">
                 −5
             </button>
-            <button id="p2BtnMinus1" onclick="adjustDamage(2, -1)" class="btn-press font-bold text-lg sm:text-xl py-1.5 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p2BtnMinus1" onclick="adjustDamage(2, -1)" class="btn-press font-extrabold text-2xl sm:text-3xl py-3.5 sm:py-4 rounded-2xl border shadow-lg transition">
                 −
             </button>
-            <button id="p2BtnPlus1" onclick="adjustDamage(2, 1)" class="btn-press font-bold text-lg sm:text-xl py-1.5 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p2BtnPlus1" onclick="adjustDamage(2, 1)" class="btn-press font-extrabold text-2xl sm:text-3xl py-3.5 sm:py-4 rounded-2xl border shadow-lg transition">
                 +
             </button>
-            <button id="p2BtnPlus5" onclick="adjustDamage(2, 5)" class="btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p2BtnPlus5" onclick="adjustDamage(2, 5)" class="btn-press font-extrabold text-base sm:text-lg py-3.5 sm:py-4 rounded-2xl border shadow-lg transition">
                 +5
             </button>
         </div>
     </section>
 
-    <div class="bg-slate-950 py-1 px-3 flex items-center justify-between border-y border-slate-800/80 z-20 gap-2 shrink-0">
+    <div class="bg-slate-950 py-1.5 px-3 flex items-center justify-between border-y border-slate-800/80 z-20 gap-2 shrink-0">
         <div class="flex items-center gap-1.5">
             <button onclick="openConfigModal(0)" title="Configurar Partida" class="btn-press bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-amber-400 font-semibold text-[11px] px-2.5 py-1.5 rounded-xl flex items-center gap-1 shadow">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -187,31 +187,31 @@
             </div>
         </div>
 
-        <div class="flex-1 min-h-0 flex flex-col items-center justify-center my-auto z-10 relative">
+        <div class="flex-1 min-h-0 flex flex-col items-center justify-center my-auto z-10 relative pb-6">
             <div id="p1SequenceBadge" class="hidden absolute top-0 px-3 py-0.5 rounded-full text-xs font-black tracking-wider shadow-lg animate-seq border">
                 +0
             </div>
 
-            <div id="p1Damage" class="text-5xl sm:text-7xl font-black transition-all duration-200 tracking-tight leading-none">
+            <div id="p1Damage" class="text-6xl sm:text-8xl font-black transition-all duration-200 tracking-tight leading-none mb-1">
                 0
             </div>
             
-            <div id="p1BarContainer" class="w-full max-w-[200px] sm:max-w-xs bg-slate-950/80 h-1.5 sm:h-2 rounded-full mt-1.5 overflow-hidden border p-0.5 transition-all">
+            <div id="p1BarContainer" class="w-full max-w-[220px] sm:max-w-xs bg-slate-950/80 h-2 sm:h-2.5 rounded-full mt-1.5 overflow-hidden border p-0.5 transition-all">
                 <div id="p1Bar" class="bg-gradient-to-r h-full rounded-full transition-all duration-300 w-0"></div>
             </div>
         </div>
 
-        <div class="grid grid-cols-4 gap-1.5 z-10 max-w-md mx-auto w-full shrink-0 pb-0.5">
-            <button id="p1BtnMinus5" onclick="adjustDamage(1, -5)" class="btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition">
+        <div class="grid grid-cols-4 gap-2 z-10 max-w-md mx-auto w-full shrink-0 pb-6">
+            <button id="p1BtnMinus5" onclick="adjustDamage(1, -5)" class="btn-press font-extrabold text-base sm:text-lg py-3.5 sm:py-4 rounded-2xl border shadow-lg transition">
                 −5
             </button>
-            <button id="p1BtnMinus1" onclick="adjustDamage(1, -1)" class="btn-press font-bold text-lg sm:text-xl py-1.5 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p1BtnMinus1" onclick="adjustDamage(1, -1)" class="btn-press font-extrabold text-2xl sm:text-3xl py-3.5 sm:py-4 rounded-2xl border shadow-lg transition">
                 −
             </button>
-            <button id="p1BtnPlus1" onclick="adjustDamage(1, 1)" class="btn-press font-bold text-lg sm:text-xl py-1.5 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p1BtnPlus1" onclick="adjustDamage(1, 1)" class="btn-press font-extrabold text-2xl sm:text-3xl py-3.5 sm:py-4 rounded-2xl border shadow-lg transition">
                 +
             </button>
-            <button id="p1BtnPlus5" onclick="adjustDamage(1, 5)" class="btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p1BtnPlus5" onclick="adjustDamage(1, 5)" class="btn-press font-extrabold text-base sm:text-lg py-3.5 sm:py-4 rounded-2xl border shadow-lg transition">
                 +5
             </button>
         </div>
@@ -355,8 +355,8 @@
                 btnBg: "bg-cyan-950/90 hover:bg-cyan-900 border-cyan-700/60 text-cyan-300",
                 bar: "from-cyan-500 to-teal-400",
                 barBorder: "border-cyan-900/50",
-                btnMinus: "bg-cyan-950/40 hover:bg-cyan-900/50 text-cyan-300 border-cyan-800/40",
-                btnPlus: "bg-cyan-900/60 hover:bg-cyan-800 text-cyan-200 border-cyan-600/50",
+                btnMinus: "bg-cyan-950/60 hover:bg-cyan-900 text-cyan-200 border-cyan-700/60",
+                btnPlus: "bg-cyan-900/80 hover:bg-cyan-800 text-cyan-100 border-cyan-600/70",
                 presetBtn: "bg-cyan-950/80 border-cyan-800/60 text-cyan-200 hover:bg-cyan-900",
                 modalBorder: "border-cyan-900/60",
                 dotBg: "bg-cyan-400",
@@ -371,8 +371,8 @@
                 btnBg: "bg-rose-950/90 hover:bg-rose-900 border-rose-700/60 text-rose-300",
                 bar: "from-rose-500 to-amber-500",
                 barBorder: "border-rose-900/50",
-                btnMinus: "bg-rose-950/40 hover:bg-rose-900/50 text-rose-300 border-rose-800/40",
-                btnPlus: "bg-rose-900/60 hover:bg-rose-800 text-rose-200 border-rose-600/50",
+                btnMinus: "bg-rose-950/60 hover:bg-rose-900 text-rose-200 border-rose-700/60",
+                btnPlus: "bg-rose-900/80 hover:bg-rose-800 text-rose-100 border-rose-600/70",
                 presetBtn: "bg-rose-950/80 border-rose-800/60 text-rose-200 hover:bg-rose-900",
                 modalBorder: "border-rose-900/60",
                 dotBg: "bg-rose-500",
@@ -387,8 +387,8 @@
                 btnBg: "bg-emerald-950/90 hover:bg-emerald-900 border-emerald-700/60 text-emerald-300",
                 bar: "from-emerald-500 to-teal-400",
                 barBorder: "border-emerald-900/50",
-                btnMinus: "bg-emerald-950/40 hover:bg-emerald-900/50 text-emerald-300 border-emerald-800/40",
-                btnPlus: "bg-emerald-900/60 hover:bg-emerald-800 text-emerald-200 border-emerald-600/50",
+                btnMinus: "bg-emerald-950/60 hover:bg-emerald-900 text-emerald-200 border-emerald-700/60",
+                btnPlus: "bg-emerald-900/80 hover:bg-emerald-800 text-emerald-100 border-emerald-600/70",
                 presetBtn: "bg-emerald-950/80 border-emerald-800/60 text-emerald-200 hover:bg-emerald-900",
                 modalBorder: "border-emerald-900/60",
                 dotBg: "bg-emerald-400",
@@ -403,8 +403,8 @@
                 btnBg: "bg-amber-950/90 hover:bg-amber-900 border-amber-700/60 text-amber-300",
                 bar: "from-amber-500 to-yellow-400",
                 barBorder: "border-amber-900/50",
-                btnMinus: "bg-amber-950/40 hover:bg-amber-900/50 text-amber-300 border-amber-800/40",
-                btnPlus: "bg-amber-900/60 hover:bg-amber-800 text-amber-200 border-amber-600/50",
+                btnMinus: "bg-amber-950/60 hover:bg-amber-900 text-amber-200 border-amber-700/60",
+                btnPlus: "bg-amber-900/80 hover:bg-amber-800 text-amber-100 border-amber-600/70",
                 presetBtn: "bg-amber-950/80 border-amber-800/60 text-amber-200 hover:bg-amber-900",
                 modalBorder: "border-amber-900/60",
                 dotBg: "bg-amber-400",
@@ -419,8 +419,8 @@
                 btnBg: "bg-purple-950/90 hover:bg-purple-900 border-purple-700/60 text-purple-300",
                 bar: "from-purple-500 to-pink-500",
                 barBorder: "border-purple-900/50",
-                btnMinus: "bg-purple-950/40 hover:bg-purple-900/50 text-purple-300 border-purple-800/40",
-                btnPlus: "bg-purple-900/60 hover:bg-purple-800 text-purple-200 border-purple-600/50",
+                btnMinus: "bg-purple-950/60 hover:bg-purple-900 text-purple-200 border-purple-700/60",
+                btnPlus: "bg-purple-900/80 hover:bg-purple-800 text-purple-100 border-purple-600/70",
                 presetBtn: "bg-purple-950/80 border-purple-800/60 text-purple-200 hover:bg-purple-900",
                 modalBorder: "border-purple-900/60",
                 dotBg: "bg-purple-400",
@@ -435,8 +435,8 @@
                 btnBg: "bg-indigo-950/90 hover:bg-indigo-900 border-indigo-700/60 text-indigo-300",
                 bar: "from-indigo-500 to-blue-400",
                 barBorder: "border-indigo-900/50",
-                btnMinus: "bg-indigo-950/40 hover:bg-indigo-900/50 text-indigo-300 border-indigo-800/40",
-                btnPlus: "bg-indigo-900/60 hover:bg-indigo-800 text-indigo-200 border-indigo-600/50",
+                btnMinus: "bg-indigo-950/60 hover:bg-indigo-900 text-indigo-200 border-indigo-700/60",
+                btnPlus: "bg-indigo-900/80 hover:bg-indigo-800 text-indigo-100 border-indigo-600/70",
                 presetBtn: "bg-indigo-950/80 border-indigo-800/60 text-indigo-200 hover:bg-indigo-900",
                 modalBorder: "border-indigo-900/60",
                 dotBg: "bg-indigo-400",
@@ -451,8 +451,8 @@
                 btnBg: "bg-orange-950/90 hover:bg-orange-900 border-orange-700/60 text-orange-300",
                 bar: "from-orange-500 to-amber-400",
                 barBorder: "border-orange-900/50",
-                btnMinus: "bg-orange-950/40 hover:bg-orange-900/50 text-orange-300 border-orange-800/40",
-                btnPlus: "bg-orange-900/60 hover:bg-orange-800 text-orange-200 border-orange-600/50",
+                btnMinus: "bg-orange-950/60 hover:bg-orange-900 text-orange-200 border-orange-700/60",
+                btnPlus: "bg-orange-900/80 hover:bg-orange-800 text-orange-100 border-orange-600/70",
                 presetBtn: "bg-orange-950/80 border-orange-800/60 text-orange-200 hover:bg-orange-900",
                 modalBorder: "border-orange-900/60",
                 dotBg: "bg-orange-400",
@@ -467,8 +467,8 @@
                 btnBg: "bg-teal-950/90 hover:bg-teal-900 border-teal-700/60 text-teal-300",
                 bar: "from-teal-500 to-emerald-400",
                 barBorder: "border-teal-900/50",
-                btnMinus: "bg-teal-950/40 hover:bg-teal-900/50 text-teal-300 border-teal-800/40",
-                btnPlus: "bg-teal-900/60 hover:bg-teal-800 text-teal-200 border-teal-600/50",
+                btnMinus: "bg-teal-950/60 hover:bg-teal-900 text-teal-200 border-teal-700/60",
+                btnPlus: "bg-teal-900/80 hover:bg-teal-800 text-teal-100 border-teal-600/70",
                 presetBtn: "bg-teal-950/80 border-teal-800/60 text-teal-200 hover:bg-teal-900",
                 modalBorder: "border-teal-900/60",
                 dotBg: "bg-teal-400",
@@ -483,8 +483,8 @@
                 btnBg: "bg-fuchsia-950/90 hover:bg-fuchsia-900 border-fuchsia-700/60 text-fuchsia-300",
                 bar: "from-fuchsia-500 to-pink-400",
                 barBorder: "border-fuchsia-900/50",
-                btnMinus: "bg-fuchsia-950/40 hover:bg-fuchsia-900/50 text-fuchsia-300 border-fuchsia-800/40",
-                btnPlus: "bg-fuchsia-900/60 hover:bg-fuchsia-800 text-fuchsia-200 border-fuchsia-600/50",
+                btnMinus: "bg-fuchsia-950/60 hover:bg-fuchsia-900 text-fuchsia-200 border-fuchsia-700/60",
+                btnPlus: "bg-fuchsia-900/80 hover:bg-fuchsia-800 text-fuchsia-100 border-fuchsia-600/70",
                 presetBtn: "bg-fuchsia-950/80 border-fuchsia-800/60 text-fuchsia-200 hover:bg-fuchsia-900",
                 modalBorder: "border-fuchsia-900/60",
                 dotBg: "bg-fuchsia-400",
@@ -560,24 +560,43 @@
             badgeEl.classList.add('hidden');
         }
 
-        function showBadge(badgeEl, delta, theme) {
+        function showBadge(badgeEl, delta) {
             if (!badgeEl) return;
-            badgeEl.textContent = (delta > 0 ? '+' : '') + delta;
-            badgeEl.className = 'absolute top-0 px-3 py-0.5 rounded-full text-xs font-black tracking-wider shadow-lg animate-seq border ' + (theme === 'emerald' ? 'bg-emerald-950/90 text-emerald-300 border-emerald-500/80' : 'bg-rose-950/90 text-rose-300 border-rose-500/80');
+            const text = (delta > 0 ? '+' : '') + delta;
+            badgeEl.textContent = text;
+            
+            // Green for positive additions, Red for subtractions
+            if (delta > 0) {
+                badgeEl.className = 'absolute top-0 px-3 py-0.5 rounded-full text-xs font-black tracking-wider shadow-lg animate-seq border bg-emerald-950/90 text-emerald-300 border-emerald-500/80';
+            } else {
+                badgeEl.className = 'absolute top-0 px-3 py-0.5 rounded-full text-xs font-black tracking-wider shadow-lg animate-seq border bg-rose-950/90 text-rose-300 border-rose-500/80';
+            }
             badgeEl.classList.remove('hidden');
         }
 
         function adjustDamage(player, amount) {
             if (player === 1) {
-                p1Damage = Math.max(MIN_DAMAGE, Math.min(p1MaxDamage, p1Damage + amount));
-                p1SeqDelta += amount;
-                showBadge(p1BadgeEl, p1SeqDelta, p1Theme);
+                const newval = Math.max(MIN_DAMAGE, Math.min(p1MaxDamage, p1Damage + amount));
+                const actualDelta = newval - p1Damage;
+                if (actualDelta === 0 && amount < 0) {
+                    showToast("O life não pode ficar abaixo de zero!");
+                    return;
+                }
+                p1Damage = newval;
+                p1SeqDelta += actualDelta;
+                showBadge(p1BadgeEl, p1SeqDelta);
                 clearTimeout(p1SeqTimer);
                 p1SeqTimer = setTimeout(() => { p1SeqDelta = 0; hideBadge(p1BadgeEl); }, 1400);
             } else {
-                p2Damage = Math.max(MIN_DAMAGE, Math.min(p2MaxDamage, p2Damage + amount));
-                p2SeqDelta += amount;
-                showBadge(p2BadgeEl, p2SeqDelta, p2Theme);
+                const newval = Math.max(MIN_DAMAGE, Math.min(p2MaxDamage, p2Damage + amount));
+                const actualDelta = newval - p2Damage;
+                if (actualDelta === 0 && amount < 0) {
+                    showToast("O life não pode ficar abaixo de zero!");
+                    return;
+                }
+                p2Damage = newval;
+                p2SeqDelta += actualDelta;
+                showBadge(p2BadgeEl, p2SeqDelta);
                 clearTimeout(p2SeqTimer);
                 p2SeqTimer = setTimeout(() => { p2SeqDelta = 0; hideBadge(p2BadgeEl); }, 1400);
             }
@@ -697,16 +716,16 @@
             const p1ConfigBtn = document.getElementById('p1ConfigBtn');
             if (p1ConfigBtn) p1ConfigBtn.className = `btn-press text-[10px] sm:text-[11px] font-semibold px-3 py-1 rounded-full border flex items-center gap-1.5 shadow transition ${t1.btnBg}`;
             
-            if (p1DamageEl) p1DamageEl.className = `text-5xl sm:text-7xl font-black transition-all duration-200 tracking-tight leading-none ${t1.text}`;
+            if (p1DamageEl) p1DamageEl.className = `text-6xl sm:text-8xl font-black transition-all duration-200 tracking-tight leading-none mb-1 ${t1.text}`;
             
             const p1BarContainer = document.getElementById('p1BarContainer');
-            if (p1BarContainer) p1BarContainer.className = `w-full max-w-[200px] sm:max-w-xs bg-slate-950/80 h-1.5 sm:h-2 rounded-full mt-1.5 overflow-hidden border p-0.5 transition-all ${t1.barBorder}`;
+            if (p1BarContainer) p1BarContainer.className = `w-full max-w-[220px] sm:max-w-xs bg-slate-950/80 h-2 sm:h-2.5 rounded-full mt-1.5 overflow-hidden border p-0.5 transition-all ${t1.barBorder}`;
             
             if (p1BarEl) p1BarEl.className = `bg-gradient-to-r ${t1.bar} h-full rounded-full transition-all duration-300 w-0`;
 
             ['p1BtnMinus5', 'p1BtnMinus1', 'p1BtnPlus1', 'p1BtnPlus5'].forEach((id, idx) => {
                 const el = document.getElementById(id);
-                if (el) el.className = `btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition ` + (idx < 2 ? t1.btnMinus : t1.btnPlus);
+                if (el) el.className = `btn-press font-extrabold text-base sm:text-lg py-3.5 sm:py-4 rounded-2xl border shadow-lg transition ` + (idx < 2 ? t1.btnMinus : t1.btnPlus);
             });
 
             const p1ConfigSection = document.getElementById('p1ConfigSection');
@@ -730,16 +749,16 @@
             const p2ConfigBtn = document.getElementById('p2ConfigBtn');
             if (p2ConfigBtn) p2ConfigBtn.className = `btn-press text-[10px] sm:text-[11px] font-semibold px-3 py-1 rounded-full border flex items-center gap-1.5 shadow transition ${t2.btnBg}`;
             
-            if (p2DamageEl) p2DamageEl.className = `text-5xl sm:text-7xl font-black transition-all duration-200 tracking-tight leading-none ${t2.text}`;
+            if (p2DamageEl) p2DamageEl.className = `text-6xl sm:text-8xl font-black transition-all duration-200 tracking-tight leading-none mb-1 ${t2.text}`;
             
             const p2BarContainer = document.getElementById('p2BarContainer');
-            if (p2BarContainer) p2BarContainer.className = `w-full max-w-[200px] sm:max-w-xs bg-slate-950/80 h-1.5 sm:h-2 rounded-full mt-1.5 overflow-hidden border p-0.5 transition-all ${t2.barBorder}`;
+            if (p2BarContainer) p2BarContainer.className = `w-full max-w-[220px] sm:max-w-xs bg-slate-950/80 h-2 sm:h-2.5 rounded-full mt-1.5 overflow-hidden border p-0.5 transition-all ${t2.barBorder}`;
             
             if (p2BarEl) p2BarEl.className = `bg-gradient-to-r ${t2.bar} h-full rounded-full transition-all duration-300 w-0`;
 
             ['p2BtnMinus5', 'p2BtnMinus1', 'p2BtnPlus1', 'p2BtnPlus5'].forEach((id, idx) => {
                 const el = document.getElementById(id);
-                if (el) el.className = `btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition ` + (idx < 2 ? t2.btnMinus : t2.btnPlus);
+                if (el) el.className = `btn-press font-extrabold text-base sm:text-lg py-3.5 sm:py-4 rounded-2xl border shadow-lg transition ` + (idx < 2 ? t2.btnMinus : t2.btnPlus);
             });
 
             const p2ConfigSection = document.getElementById('p2ConfigSection');
@@ -793,7 +812,6 @@
                 p1Sec.classList.remove('hidden');
                 p2Sec.classList.remove('hidden');
                 p2Sec.className = "bg-slate-950/80 p-3.5 rounded-2xl border flex flex-col gap-2.5 rotate-180";
-                if (globalBtn) globalBtn.classList.add('hidden'); // Simplified single apply flow or keep as is
                 if (globalBtn) globalBtn.classList.remove('hidden');
                 if (modalGrid) modalGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-3.5";
                 if (modalTitle) modalTitle.textContent = "Configurar Partida";
