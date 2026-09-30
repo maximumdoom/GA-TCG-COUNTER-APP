@@ -85,7 +85,7 @@
 
     <div id="toastContainer" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none w-11/12 max-w-md"></div>
 
-    <section id="p2Section" class="flex-1 min-h-0 bg-gradient-to-b p-2 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-colors duration-300 rotate-180 pt-[env(safe-area-inset-top,8px)] pb-[env(safe-area-inset-bottom,8px)]">
+    <section id="p2Section" class="flex-1 min-h-0 bg-gradient-to-b p-2 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-colors duration-300 rotate-180 pt-[env(safe-area-inset-top,12px)] pb-[env(safe-area-inset-bottom,4px)]">
         <div class="flex justify-between items-center z-10 shrink-0">
             <span id="p2Tag" class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border transition-all">
                 Player 2
@@ -115,23 +115,23 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-4 gap-1.5 z-10 max-w-md mx-auto w-full shrink-0 pb-1">
-            <button id="p2BtnMinus5" onclick="adjustDamage(2, -5)" class="btn-press font-bold text-xs sm:text-sm py-2 sm:py-2.5 rounded-xl border shadow transition">
+        <div class="grid grid-cols-4 gap-1.5 z-10 max-w-md mx-auto w-full shrink-0 pb-0.5">
+            <button id="p2BtnMinus5" onclick="adjustDamage(2, -5)" class="btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition">
                 −5
             </button>
-            <button id="p2BtnMinus1" onclick="adjustDamage(2, -1)" class="btn-press font-bold text-lg sm:text-xl py-2 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p2BtnMinus1" onclick="adjustDamage(2, -1)" class="btn-press font-bold text-lg sm:text-xl py-1.5 sm:py-2.5 rounded-xl border shadow transition">
                 −
             </button>
-            <button id="p2BtnPlus1" onclick="adjustDamage(2, 1)" class="btn-press font-bold text-lg sm:text-xl py-2 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p2BtnPlus1" onclick="adjustDamage(2, 1)" class="btn-press font-bold text-lg sm:text-xl py-1.5 sm:py-2.5 rounded-xl border shadow transition">
                 +
             </button>
-            <button id="p2BtnPlus5" onclick="adjustDamage(2, 5)" class="btn-press font-bold text-xs sm:text-sm py-2 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p2BtnPlus5" onclick="adjustDamage(2, 5)" class="btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition">
                 +5
             </button>
         </div>
     </section>
 
-    <div class="bg-slate-950 py-1.5 px-3 flex items-center justify-between border-y border-slate-800/80 z-20 gap-2 shrink-0">
+    <div class="bg-slate-950 py-1 px-3 flex items-center justify-between border-y border-slate-800/80 z-20 gap-2 shrink-0">
         <div class="flex items-center gap-1.5">
             <button onclick="openConfigModal(0)" title="Configurar Partida" class="btn-press bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-amber-400 font-semibold text-[11px] px-2.5 py-1.5 rounded-xl flex items-center gap-1 shadow">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -153,13 +153,12 @@
         </div>
 
         <div class="flex items-center gap-1.5 absolute left-1/2 -translate-x-1/2">
-            <div class="w-6 h-6 rounded-lg bg-slate-900 border border-slate-700/80 flex items-center justify-center p-1 text-amber-400 shadow-inner">
-                <!-- Crown Icon -->
+            <div class="w-5 h-5 rounded-lg bg-slate-900 border border-slate-700/80 flex items-center justify-center p-0.5 text-amber-400 shadow-inner">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/>
                 </svg>
             </div>
-            <span class="font-medieval text-sm sm:text-base font-black tracking-widest bg-gradient-to-r from-amber-300 via-amber-100 to-amber-400 bg-clip-text text-transparent uppercase drop-shadow">GA TCG</span>
+            <span class="font-medieval text-xs sm:text-sm font-black tracking-widest bg-gradient-to-r from-amber-300 via-amber-100 to-amber-400 bg-clip-text text-transparent uppercase drop-shadow">GA TCG</span>
         </div>
 
         <div class="flex items-center">
@@ -172,7 +171,7 @@
         </div>
     </div>
 
-    <section id="p1Section" class="flex-1 min-h-0 bg-gradient-to-b p-2 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-colors duration-300 pb-[env(safe-area-inset-bottom,8px)]">
+    <section id="p1Section" class="flex-1 min-h-0 bg-gradient-to-b p-2 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-colors duration-300 pt-[env(safe-area-inset-top,4px)] pb-[env(safe-area-inset-bottom,16px)]">
         <div class="flex justify-between items-center z-10 shrink-0">
             <span id="p1Tag" class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border transition-all">
                 Player 1
@@ -202,17 +201,17 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-4 gap-1.5 z-10 max-w-md mx-auto w-full shrink-0 pb-1">
-            <button id="p1BtnMinus5" onclick="adjustDamage(1, -5)" class="btn-press font-bold text-xs sm:text-sm py-2 sm:py-2.5 rounded-xl border shadow transition">
+        <div class="grid grid-cols-4 gap-1.5 z-10 max-w-md mx-auto w-full shrink-0 pb-0.5">
+            <button id="p1BtnMinus5" onclick="adjustDamage(1, -5)" class="btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition">
                 −5
             </button>
-            <button id="p1BtnMinus1" onclick="adjustDamage(1, -1)" class="btn-press font-bold text-lg sm:text-xl py-2 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p1BtnMinus1" onclick="adjustDamage(1, -1)" class="btn-press font-bold text-lg sm:text-xl py-1.5 sm:py-2.5 rounded-xl border shadow transition">
                 −
             </button>
-            <button id="p1BtnPlus1" onclick="adjustDamage(1, 1)" class="btn-press font-bold text-lg sm:text-xl py-2 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p1BtnPlus1" onclick="adjustDamage(1, 1)" class="btn-press font-bold text-lg sm:text-xl py-1.5 sm:py-2.5 rounded-xl border shadow transition">
                 +
             </button>
-            <button id="p1BtnPlus5" onclick="adjustDamage(1, 5)" class="btn-press font-bold text-xs sm:text-sm py-2 sm:py-2.5 rounded-xl border shadow transition">
+            <button id="p1BtnPlus5" onclick="adjustDamage(1, 5)" class="btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition">
                 +5
             </button>
         </div>
@@ -235,7 +234,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="modalContentGrid">
-                    <!-- Player 2 Config Panel (Rotated 180deg when in general mode so Player 2 can read it) -->
                     <div id="p2ConfigSection" class="bg-slate-950/80 p-3.5 rounded-2xl border flex flex-col gap-2.5 rotate-180">
                         <div class="flex justify-between items-center border-b border-slate-800/80 pb-2">
                             <div class="flex items-center gap-2">
@@ -274,7 +272,6 @@
                         </div>
                     </div>
 
-                    <!-- Player 1 Config Panel -->
                     <div id="p1ConfigSection" class="bg-slate-950/80 p-3.5 rounded-2xl border flex flex-col gap-2.5">
                         <div class="flex justify-between items-center border-b border-slate-800/80 pb-2">
                             <div class="flex items-center gap-2">
@@ -692,7 +689,7 @@
             const t2 = THEMES[p2Theme] || THEMES.cyan;
 
             const p1Section = document.getElementById('p1Section');
-            if (p1Section) p1Section.className = `flex-1 min-h-0 bg-gradient-to-b ${t1.bg} p-2 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-colors duration-300 pb-[env(safe-area-inset-bottom,8px)]`;
+            if (p1Section) p1Section.className = `flex-1 min-h-0 bg-gradient-to-b ${t1.bg} p-2 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-colors duration-300 pt-[env(safe-area-inset-top,4px)] pb-[env(safe-area-inset-bottom,16px)]`;
             
             const p1Tag = document.getElementById('p1Tag');
             if (p1Tag) p1Tag.className = `text-[10px] sm:text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border transition-all ${t1.tagBg}`;
@@ -709,7 +706,7 @@
 
             ['p1BtnMinus5', 'p1BtnMinus1', 'p1BtnPlus1', 'p1BtnPlus5'].forEach((id, idx) => {
                 const el = document.getElementById(id);
-                if (el) el.className = `btn-press font-bold text-xs sm:text-sm py-2 sm:py-2.5 rounded-xl border shadow transition ` + (idx < 2 ? t1.btnMinus : t1.btnPlus);
+                if (el) el.className = `btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition ` + (idx < 2 ? t1.btnMinus : t1.btnPlus);
             });
 
             const p1ConfigSection = document.getElementById('p1ConfigSection');
@@ -725,7 +722,7 @@
             });
 
             const p2Section = document.getElementById('p2Section');
-            if (p2Section) p2Section.className = `flex-1 min-h-0 rotate-180 bg-gradient-to-b ${t2.bg} p-2 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-colors duration-300 pt-[env(safe-area-inset-top,8px)] pb-[env(safe-area-inset-bottom,8px)]`;
+            if (p2Section) p2Section.className = `flex-1 min-h-0 rotate-180 bg-gradient-to-b ${t2.bg} p-2 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-colors duration-300 pt-[env(safe-area-inset-top,12px)] pb-[env(safe-area-inset-bottom,4px)]`;
             
             const p2Tag = document.getElementById('p2Tag');
             if (p2Tag) p2Tag.className = `text-[10px] sm:text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border transition-all ${t2.tagBg}`;
@@ -742,14 +739,11 @@
 
             ['p2BtnMinus5', 'p2BtnMinus1', 'p2BtnPlus1', 'p2BtnPlus5'].forEach((id, idx) => {
                 const el = document.getElementById(id);
-                if (el) el.className = `btn-press font-bold text-xs sm:text-sm py-2 sm:py-2.5 rounded-xl border shadow transition ` + (idx < 2 ? t2.btnMinus : t2.btnPlus);
+                if (el) el.className = `btn-press font-bold text-xs sm:text-sm py-1.5 sm:py-2.5 rounded-xl border shadow transition ` + (idx < 2 ? t2.btnMinus : t2.btnPlus);
             });
 
             const p2ConfigSection = document.getElementById('p2ConfigSection');
-            // Keep rotate-180 when inside general modal view so Player 2 can read their settings correctly
-            if (p2ConfigSection && !p2ConfigSection.classList.contains('rotate-180')) {
-                p2ConfigSection.className = `bg-slate-950/80 p-3.5 rounded-2xl border ${t2.modalBorder} flex flex-col gap-2.5 rotate-180`;
-            } else if (p2ConfigSection && p2ConfigSection.classList.contains('rotate-180')) {
+            if (p2ConfigSection) {
                 p2ConfigSection.className = `bg-slate-950/80 p-3.5 rounded-2xl border ${t2.modalBorder} flex flex-col gap-2.5 rotate-180`;
             }
             
@@ -790,7 +784,7 @@
             } else if (targetPlayer === 2) {
                 p1Sec.classList.add('hidden');
                 p2Sec.classList.remove('hidden');
-                p2Sec.className = "bg-slate-950/80 p-3.5 rounded-2xl border flex flex-col gap-2.5 rotate-0"; // Normal upright when viewed individually by P2
+                p2Sec.className = "bg-slate-950/80 p-3.5 rounded-2xl border flex flex-col gap-2.5 rotate-0";
                 if (globalBtn) globalBtn.classList.add('hidden');
                 if (modalGrid) modalGrid.className = "grid grid-cols-1 gap-3.5 max-w-sm mx-auto w-full";
                 if (modalTitle) modalTitle.textContent = "Configurar Player 2";
@@ -798,7 +792,8 @@
             } else {
                 p1Sec.classList.remove('hidden');
                 p2Sec.classList.remove('hidden');
-                p2Sec.className = "bg-slate-950/80 p-3.5 rounded-2xl border flex flex-col gap-2.5 rotate-180"; // Rotated 180deg when in general view so P2 can read it
+                p2Sec.className = "bg-slate-950/80 p-3.5 rounded-2xl border flex flex-col gap-2.5 rotate-180";
+                if (globalBtn) globalBtn.classList.add('hidden'); // Simplified single apply flow or keep as is
                 if (globalBtn) globalBtn.classList.remove('hidden');
                 if (modalGrid) modalGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-3.5";
                 if (modalTitle) modalTitle.textContent = "Configurar Partida";
